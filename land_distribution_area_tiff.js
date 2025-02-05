@@ -1,5 +1,14 @@
-// Script to calculate the area of the land distribution and cut to a region of interest
+/**
+* @description
+*    Script to calculate the area of the land distribution and cut to a region of interest
+* 
+* @author 
+*    Grazieli Rodigheri - 2025/2
+*/ 
 
+// =========================
+// DEFINITIONS AND ASSETS
+// =========================
 // Biome boundaries
 var shape_region = ee.FeatureCollection('projects/ee-grodigheri/assets/Shapes/RS_state')
 // Map.addLayer(shape_region, {}, 'shp');
@@ -20,6 +29,18 @@ var scale = 30;
 
 // Image area in ha (divide by 1000000 to retrieve in km²)
 var pixelArea = ee.Image.pixelArea().divide(10000);
+
+// ============================================================
+// ====== Function to compute area and covert to table  =======
+// ============================================================
+
+/**
+* @author 
+*    João Siqueira
+* 
+* @adapted 
+*    Grazieli Rodigheri - 2025/2
+*/
 
 // Convert to table and set are and ID to each feature
 var convert2table = function (idGroup) {
@@ -55,9 +76,17 @@ var calculateArea = function (territory, geometry) {
     return ee.FeatureCollection(areas)
 };
 
+// ================
+// COMPUTE AREAS
+// ================
+
 // Use the function
 var areas = calculateArea(territory, shape_region.geometry());
 print("Areas", areas.limit(2))
+
+// ================
+// EXPORT RESULTS
+// ================
 
 // Define the Google Drive output folder 
 var driverFolder = 'GEE_EXPORTS';
