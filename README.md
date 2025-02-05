@@ -10,3 +10,8 @@
 ## Description:
 
 This repository contains scripts to use in Google Earth Engine (GEE). 
+
+## Algorithms:
+
+The algorithms include:
+- Calculate [land distribution](https://www.cartasdaterra.com.br/post/malha-fundi%C3%A1ria) area and clip with a region of interest: [malha_fundiaria_img_area.js](https://code.earthengine.google.com/20c37ad02087d48a21c7f5aa9688a8d9)
